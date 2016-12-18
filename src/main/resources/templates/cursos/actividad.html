@@ -1,0 +1,9 @@
+<table border="1">
+    <tr th:each="actividad : ${actividadCursos}">
+        <td th:text="${actividad.codigo}"></td>
+        <td th:text="${actividad.titulo}"></td>
+        <td th:text="${actividad.unidadesDidacticasCompletadas}"></td>
+        <td th:text="${actividad.desde!=null} ?${#temporals.format(actividad.desde, 'dd/MM/yyyy')}"></td>
+        <td th:text="${actividad.hasta!=null} ?${#temporals.format(actividad.hasta, 'dd/MM/yyyy')}"></td>        
+    </tr>
+</table>
