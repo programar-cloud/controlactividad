@@ -29,10 +29,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
+@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class ActividadUnicoCursoCtrlIT {
     
     private static final String CODIGO_CURSO_EXISTENTE = "cultura";
@@ -42,6 +46,12 @@ public class ActividadUnicoCursoCtrlIT {
 
     @Autowired
     private TestRestTemplate restTemplate;
+    
+    @Before
+    public void drawRule() {
+        System.out.println("*****************************************************" + 
+                           "*****************************************************");
+    }
 
     @Test
     public void actividadCursoInexistente() {

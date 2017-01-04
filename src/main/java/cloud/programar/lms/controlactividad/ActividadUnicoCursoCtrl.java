@@ -14,7 +14,6 @@
 package cloud.programar.lms.controlactividad;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.validation.constraints.Size;
@@ -41,16 +40,21 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/cursos/{codigo}/unidades-didacticas/actividad")
 public class ActividadUnicoCursoCtrl {
+    private final String CODIGO_CURSO_EXISTENTE = "cultura";
+    
     private final ActividadUnidadDidactica[] actividadUnidades = {
-            new ActividadUnidadDidactica("cultura", "1000", "El nacimiento de los web services", 1080, null, null),
-            new ActividadUnidadDidactica("cultura", "1010", "Desde monolíticas a microservicios", 1000, null, null),
-            new ActividadUnidadDidactica("cultura", "1020", "Devops, no, en serio: devops", 500, null, null)};
+            new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1000", "El nacimiento de los web services", 1080, null, null),
+            new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1010", "Desde monolíticas a microservicios", 1000, null, null),
+            new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1020", "Devops, no, en serio: devops", 500, null, null)};
 
     @GetMapping(produces = {MediaType.TEXT_HTML_VALUE})
     public ModelAndView actividadCursoHTML(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) ZonedDateTime desde,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) ZonedDateTime hasta) {
+        if (codigo.equals(CODIGO_CURSO_EXISTENTE) == false) {
+            throw new ResourceNotFoundException(String.format("El curso %s no existe.", codigo));
+        }
         ModelAndView mav = new ModelAndView("cursos/unidades-didacticas/actividad");
         if (actividadUnidades[0].getCodigoCurso().equals(codigo) == true) {
             for (ActividadUnidadDidactica actividad : actividadUnidades) {
@@ -67,8 +71,8 @@ public class ActividadUnicoCursoCtrl {
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime hasta) {
-        if (actividadUnidades[0].getCodigoCurso().equals(codigo) == false) {
-            return new ArrayList<>();
+        if (codigo.equals(CODIGO_CURSO_EXISTENTE) == false) {
+            throw new ResourceNotFoundException(String.format("El curso %s no existe.", codigo));
         }
         for (ActividadUnidadDidactica actividad : actividadUnidades) {
             actividad.setDesde(desde);
