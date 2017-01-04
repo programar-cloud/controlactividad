@@ -12,6 +12,8 @@
  * limitations under the License.
  */package cloud.programar.lms.controlactividad;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +24,9 @@ import lombok.NoArgsConstructor;
  * @author ciberado
  */
 @Data @AllArgsConstructor @NoArgsConstructor
+@JsonRootName("actividades")
 public class ActividadUnidadDidactica {
+    @JsonProperty("codigo-curso")
     String codigoCurso;
     
     String numero;
