@@ -14,7 +14,11 @@
 package cloud.programar.lms.controlactividad;
 
 import com.jayway.jsonpath.JsonPath;
+import java.util.Arrays;
 import java.util.List;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,7 +60,7 @@ public class ActividadUnicoCursoCtrlIT {
     @Test
     public void actividadCursoInexistente() {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         
         HttpEntity<String> entity = new HttpEntity<>(headers);
         String url = String.format(PATH, CODIGO_CURSO_INEXISTENTE);
@@ -69,7 +73,7 @@ public class ActividadUnicoCursoCtrlIT {
     @Test
     public void actividadCursoExistenteJSON() {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         
         HttpEntity<String> entity = new HttpEntity<>(headers);
         String url = String.format(PATH, CODIGO_CURSO_EXISTENTE);
@@ -85,6 +89,30 @@ public class ActividadUnicoCursoCtrlIT {
         Assert.assertTrue("Encontradas actividades.", codigosCurso.size() > 0);
         Assert.assertTrue("Actividad pertenciente al curso \"cultura\".", 
                           codigosCurso.stream().allMatch(codigo -> codigo.equals("cultura")));
+    }
+
+    @Test
+    public void actividadCursoExistenteHTML() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.TEXT_HTML));
+        
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+        String url = String.format(PATH, CODIGO_CURSO_EXISTENTE);
+        ResponseEntity<String> response = 
+                restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        
+        assertEquals("Invocación existosa", HttpStatus.OK,
+                response.getStatusCode());
+
+        String responseBody = response.getBody();        
+
+        Document doc = Jsoup.parse(responseBody);
+        Elements codigosCursoElem = doc.select("table tr td:first-child");
+        
+
+        Assert.assertTrue("Encontradas actividades.", codigosCursoElem.size() > 0);
+        Assert.assertTrue("Actividad pertenciente al curso \"cultura\".", 
+                          codigosCursoElem.stream().allMatch(elem -> elem.text().equals("cultura")));
     }
 
 }
