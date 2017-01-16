@@ -13,6 +13,7 @@
  */
 package cloud.programar.lms.controlactividad;
 
+import io.swagger.annotations.ApiOperation;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -48,6 +49,7 @@ public class ActividadUnicoCursoCtrl {
             new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1020", "Devops, no, en serio: devops", 500, null, null)};
 
     @GetMapping(produces = {MediaType.TEXT_HTML_VALUE})
+    @ApiOperation("")
     public ModelAndView actividadCursoHTML(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) ZonedDateTime desde,
@@ -67,6 +69,7 @@ public class ActividadUnicoCursoCtrl {
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @ApiOperation("")
     public List<ActividadUnidadDidactica> actividadCurso(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
@@ -82,6 +85,7 @@ public class ActividadUnicoCursoCtrl {
     }
 
     @GetMapping(produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
+    @ApiOperation("")
     public List<ActividadCurso> actividadCursoImage(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
@@ -90,6 +94,7 @@ public class ActividadUnicoCursoCtrl {
     }
 
     @GetMapping(produces = {"text/csv"})
+    @ApiOperation("")
     public List<ActividadCurso> actividadCursoCSV(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
