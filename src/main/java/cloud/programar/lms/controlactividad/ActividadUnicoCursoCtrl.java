@@ -49,7 +49,9 @@ public class ActividadUnicoCursoCtrl {
             new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1020", "Devops, no, en serio: devops", 500, null, null)};
 
     @GetMapping(produces = {MediaType.TEXT_HTML_VALUE})
-    @ApiOperation("")
+    @ApiOperation(value = "", code = 200, 
+            notes = "Recupera una tabla html con una actividad por cada fila.",
+            produces = "text/html")
     public ModelAndView actividadCursoHTML(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) ZonedDateTime desde,
@@ -69,7 +71,9 @@ public class ActividadUnicoCursoCtrl {
     }
 
     @GetMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
-    @ApiOperation("")
+    @ApiOperation(value = "", code = 200, 
+            notes = "",
+            produces = "application/json, application/xml")
     public List<ActividadUnidadDidactica> actividadCurso(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
@@ -85,7 +89,11 @@ public class ActividadUnicoCursoCtrl {
     }
 
     @GetMapping(produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
-    @ApiOperation("")
+    @ApiOperation(value = "", code = 200, 
+            notes = "PENDIENTE DE IMPLEMENTAR. Recupera un gráfico "
+                    + "de barras representando la actividad un "
+                    + "curso.",
+            produces = "image/png, image/jpeg")
     public List<ActividadCurso> actividadCursoImage(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
@@ -94,7 +102,11 @@ public class ActividadUnicoCursoCtrl {
     }
 
     @GetMapping(produces = {"text/csv"})
-    @ApiOperation("")
+    @ApiOperation(value = "", code = 200, 
+            notes = "PENDIENTE DE IMPLEMENTAR. Recupera un fichero de texto "
+                    + "separado por ; con las columnas de la actividad "
+                    + "existente en un curso.",
+            produces = "text/(sv")
     public List<ActividadCurso> actividadCursoCSV(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
