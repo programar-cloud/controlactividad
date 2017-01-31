@@ -32,7 +32,7 @@ public class ActividadUnidadDidactica {
     /**
      * El codigo de curso es legible para humanos. Inmutable.
      */
-    @JsonProperty("codigo-curso")
+    @JsonProperty("codigo_curso")
     String codigoCurso;
     /**
      * Facilita la ordenacion de las unidades didacticas.

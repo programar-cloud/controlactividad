@@ -1,4 +1,4 @@
-= Example API Documentation
+= programar.cloud - API
 :doctype: book
 :compat-mode:
 :page-layout!:
@@ -12,34 +12,34 @@
 
 
 [[overview]]
-= Overview
+= Visión general
 
 [[overview-general]]
-== General
+== Introducción
+
+Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?
 
 [[overview-http-verbs]]
-=== HTTP verbs
-
-An example of static AsciiDoc.
+=== Verbos utilizados
 
 |===
-| Verb | Usage
+| Verbo | Uso
 
 | `GET`
-| Used to retrieve a resource (idempotent)
+| Utilizado para recuperar recursos (idempotente)
 
 | `POST`
-| Used to create a new resource
+| Fija un recurso autogenerando su URI
 
 | `PUT`
-| Used to update an existing resource (idempotent)
+| Fija un recurso explicitando su URI completa
 
 | `DELETE`
-| Used to delete an existing resource
+| Elimina un recurso
 |===
 
 
 [[resources]]
-= Resources
+= Recursos
 
 include::actividad-unico-curso.adoc[]

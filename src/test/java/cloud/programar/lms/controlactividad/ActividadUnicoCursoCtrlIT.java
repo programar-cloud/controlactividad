@@ -55,7 +55,7 @@ public class ActividadUnicoCursoCtrlIT {
     private static final String PATH = "/cursos/%s/unidades-didacticas/actividad";
 
     @Rule
-    public final RestDocumentation restDocumentation = new RestDocumentation("build/generated-snippets");
+    public final RestDocumentation restDocumentation = new RestDocumentation("target/generated-snippets");
 
     @Autowired
     private WebApplicationContext context;
@@ -106,7 +106,7 @@ public class ActividadUnicoCursoCtrlIT {
     }
 
     @Test
-    public void getActividadInexistenteJson() throws Exception {
+    public void getJsonInexistente() throws Exception {
         String url = String.format(PATH, CODIGO_CURSO_INEXISTENTE);
         this.mockMvc.perform(
                 get(url).accept(MediaType.APPLICATION_JSON)
@@ -114,7 +114,7 @@ public class ActividadUnicoCursoCtrlIT {
     }
 
     @Test
-    public void getActividadJson() throws Exception {
+    public void getJson() throws Exception {
         String url = String.format(PATH, CODIGO_CURSO_EXISTENTE);
         this.mockMvc.perform(
                 get(url).accept(MediaType.APPLICATION_JSON)

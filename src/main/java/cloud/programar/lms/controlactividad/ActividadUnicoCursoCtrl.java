@@ -47,6 +47,17 @@ public class ActividadUnicoCursoCtrl {
             new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1010", "Desde monolíticas a microservicios", 1000, null, null),
             new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1020", "Devops, no, en serio: devops", 500, null, null)};
 
+    /**
+     * 
+     * Retorna las unidades didacticas de un determinado curso opcionalmente restringiendo
+     * la busqueda a un periodo de tiempo. Puede utilizarse para evaluar la popularidad de
+     * cada una de las secciones del mismo.
+     * 
+     * @param codigo del curso, como por ejemplo *cultura*.
+     * @param desde fecha opcional de inicio en formato yyyy-MM-dd.
+     * @param hasta fecha opcional de final de rango (inclusive) en formato yyyy-MM-dd.
+     * @return la lista de actividades como una tabla HTML.
+     */
     @GetMapping(produces = {MediaType.TEXT_HTML_VALUE})
     public ModelAndView actividadCursoHTML(
             @PathVariable @Size(min = 4) String codigo,
@@ -71,7 +82,7 @@ public class ActividadUnicoCursoCtrl {
      * la busqueda a un periodo de tiempo. Puede utilizarse para evaluar la popularidad de
      * cada una de las secciones del mismo.
      * 
-     * @param codigo del curso, como por ejemplo <pre>cultura</pre>.
+     * @param codigo del curso, como por ejemplo *cultura*.
      * @param desde fecha opcional de inicio en formato yyyy-MM-dd.
      * @param hasta fecha opcional de final de rango (inclusive) en formato yyyy-MM-dd.
      * @return la lista de actividades como un array json de objetos o un arbol xml.

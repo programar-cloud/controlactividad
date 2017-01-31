@@ -119,6 +119,34 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>javadoc-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doclet>capital.scalable.restdocs.jsondoclet.ExtractDocumentationAsJsonDoclet</doclet>
+                    <docletArtifact>
+                        <groupId>capital.scalable</groupId>
+                        <artifactId>spring-auto-restdocs-json-doclet</artifactId>
+                        <version>1.0.4</version>
+                    </docletArtifact>   
+                    <destDir>generated-javadoc-json</destDir>
+                    <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
+                    <useStandardDocletOptions>false</useStandardDocletOptions>
+                    <show>package</show>
+                </configuration>
+            </plugin>            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
                     <includes>
@@ -144,17 +172,13 @@
                 </executions>
             </plugin> 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>
                 <version>1.5.3</version>
                 <executions>
                     <execution>
                         <id>generate-docs</id>
-                        <phase>prepare-package</phase>
+                        <phase>integration-test</phase>
                         <goals>
                             <goal>process-asciidoc</goal>
                         </goals>
@@ -174,7 +198,7 @@
                 <executions>
                     <execution>
                         <id>copy-index-public</id>
-                        <phase>prepare-package</phase>
+                        <phase>integration-test</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -207,30 +231,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>javadoc-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <doclet>capital.scalable.restdocs.jsondoclet.ExtractDocumentationAsJsonDoclet</doclet>
-                    <docletArtifact>
-                        <groupId>capital.scalable</groupId>
-                        <artifactId>spring-auto-restdocs-json-doclet</artifactId>
-                        <version>1.0.4</version>
-                    </docletArtifact>   
-                    <destDir>generated-javadoc-json</destDir>
-                    <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
-                    <useStandardDocletOptions>false</useStandardDocletOptions>
-                    <show>package</show>
-                </configuration>
-            </plugin>            
         </plugins>
     </build>
 
