@@ -20,6 +20,9 @@ import lombok.NoArgsConstructor;
 
 /**
  *
+ * Incluye información con el resúmen de las actividades que se han llevado
+ * a cabo en un determinado curso.
+ * 
  * @author ciberado
  */
 @Data @AllArgsConstructor @NoArgsConstructor

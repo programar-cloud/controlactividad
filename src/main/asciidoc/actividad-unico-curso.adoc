@@ -1,0 +1,127 @@
+[[resources-actividad-unico-curso]]
+== Actividad Único Curso
+
+[[resources-actividad-unico-curso-get]]
+=== Obtener un curso (JSON/XML)
+
+`GET /cursos/{codigo}/unidades-didacticas/actividad`
+     
+
+==== Request structure
+
+include::{snippets}/actividad-unico-curso/get-actividad-json/request-fields.adoc[]
+
+We do not have to care whether to include a snippet or not,
+because the template returns "No data." instead of an empty table.
+
+==== Response structure
+
+include::{snippets}/item-resource-test/get-item/response-fields.adoc[]
+
+==== Example request/response
+
+include::{snippets}/item-resource-test/get-item/curl-request.adoc[]
+include::{snippets}/item-resource-test/get-item/http-response.adoc[]
+
+
+[[resources-items-all]]
+=== Get all item
+
+`GET /items`
+
+As AsciiDoc is used, any additional information can be placed here and you don't have to care about formatting.
+
+This endpoint really returns all items and that is always 100.
+
+==== Authorization
+
+include::{snippets}/item-resource-test/get-all-items/authorization.adoc[]
+
+==== Request structure
+
+include::{snippets}/item-resource-test/get-all-items/request-fields.adoc[]
+
+==== Response structure
+
+include::{snippets}/item-resource-test/get-all-items/response-fields.adoc[]
+
+==== Example request/response
+
+include::{snippets}/item-resource-test/get-all-items/curl-request.adoc[]
+
+The array shortening feature intercepted here and reduced the 100 items to 3.
+
+include::{snippets}/item-resource-test/get-all-items/http-response.adoc[]
+
+
+[[resources-items-add]]
+=== Add an item
+
+`POST /items`
+
+==== Authorization
+
+include::{snippets}/item-resource-test/add-item/authorization.adoc[]
+
+==== Request structure
+
+include::{snippets}/item-resource-test/add-item/request-fields.adoc[]
+
+==== Response structure
+
+include::{snippets}/item-resource-test/add-item/response-fields.adoc[]
+
+==== Example request/response
+
+include::{snippets}/item-resource-test/add-item/curl-request.adoc[]
+include::{snippets}/item-resource-test/add-item/http-response.adoc[]
+
+
+[[resources-items-update]]
+=== Update an item
+
+`PUT /items/{id}`
+
+==== Authorization
+
+include::{snippets}/item-resource-test/update-item/authorization.adoc[]
+
+==== Request structure
+
+include::{snippets}/item-resource-test/update-item/request-fields.adoc[]
+
+==== Response structure
+
+include::{snippets}/item-resource-test/update-item/response-fields.adoc[]
+
+==== Example request/response
+
+include::{snippets}/item-resource-test/update-item/curl-request.adoc[]
+include::{snippets}/item-resource-test/update-item/http-response.adoc[]
+
+
+[[resources-items-delete]]
+=== Delete an item
+
+`DELETE /items/{id}`
+
+==== Authorization
+
+include::{snippets}/item-resource-test/delete-item/authorization.adoc[]
+
+==== Request structure
+
+include::{snippets}/item-resource-test/delete-item/request-fields.adoc[]
+
+==== Response structure
+
+include::{snippets}/item-resource-test/delete-item/response-fields.adoc[]
+
+==== Example request/response
+
+include::{snippets}/item-resource-test/delete-item/curl-request.adoc[]
+include::{snippets}/item-resource-test/delete-item/http-response.adoc[]
+
+// Use of all in one section snippets
+include::{snippets}/item-resource-test/get-child-item/section.adoc[]
+include::{snippets}/item-resource-test/search/section.adoc[]

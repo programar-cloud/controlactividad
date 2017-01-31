@@ -13,7 +13,6 @@
  */
 package cloud.programar.lms.controlactividad;
 
-import io.swagger.annotations.ApiOperation;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -49,9 +48,6 @@ public class ActividadUnicoCursoCtrl {
             new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1020", "Devops, no, en serio: devops", 500, null, null)};
 
     @GetMapping(produces = {MediaType.TEXT_HTML_VALUE})
-    @ApiOperation(value = "", code = 200, 
-            notes = "Recupera una tabla html con una actividad por cada fila.",
-            produces = "text/html")
     public ModelAndView actividadCursoHTML(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) ZonedDateTime desde,
@@ -70,10 +66,17 @@ public class ActividadUnicoCursoCtrl {
         return mav;
     }
 
+    /**
+     * Retorna las unidades didácticas de un determinado curso opcionalmente restringiendo
+     * la búsqueda a un periodo de tiempo. Puede utilizarse para evaluar la popularidad de
+     * cada una de las secciones del mismo.
+     * 
+     * @param codigo del curso, como por ejemplo <pre>cultura</pre>.
+     * @param desde fecha opcional de inicio en formato yyyy-MM-dd.
+     * @param hasta fecha opcional de final de rango (inclusive) en formato yyyy-MM-dd.
+     * @return la lista de actividades como un array json de objetos o un árbol xml.
+     */
     @GetMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
-    @ApiOperation(value = "", code = 200, 
-            notes = "",
-            produces = "application/json, application/xml")
     public List<ActividadUnidadDidactica> actividadCurso(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
@@ -89,11 +92,6 @@ public class ActividadUnicoCursoCtrl {
     }
 
     @GetMapping(produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
-    @ApiOperation(value = "", code = 200, 
-            notes = "PENDIENTE DE IMPLEMENTAR. Recupera un gráfico "
-                    + "de barras representando la actividad un "
-                    + "curso.",
-            produces = "image/png, image/jpeg")
     public List<ActividadCurso> actividadCursoImage(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
@@ -102,11 +100,6 @@ public class ActividadUnicoCursoCtrl {
     }
 
     @GetMapping(produces = {"text/csv"})
-    @ApiOperation(value = "", code = 200, 
-            notes = "PENDIENTE DE IMPLEMENTAR. Recupera un fichero de texto "
-                    + "separado por ; con las columnas de la actividad "
-                    + "existente en un curso.",
-            produces = "text/(sv")
     public List<ActividadCurso> actividadCursoCSV(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
