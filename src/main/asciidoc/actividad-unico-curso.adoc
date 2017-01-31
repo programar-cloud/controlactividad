@@ -60,6 +60,12 @@ include::{snippets}/actividad-unico-curso/get-json/response-fields.adoc[]
 include::{snippets}/actividad-unico-curso/get-json/curl-request.adoc[]
 include::{snippets}/actividad-unico-curso/get-json/http-response.adoc[]
 
+==== Example request/response (text/html)
+
+include::{snippets}/actividad-unico-curso/get-html/curl-request.adoc[]
+include::{snippets}/actividad-unico-curso/get-html/http-response.adoc[]
+
+
 ==== Response example (image/png, image/jpg)
 
 image::https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Histogram_example.svg/250px-Histogram_example.svg.png[Popularidad cursos]

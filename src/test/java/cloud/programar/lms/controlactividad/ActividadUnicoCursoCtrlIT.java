@@ -17,6 +17,7 @@ import capital.scalable.restdocs.AutoDocumentation;
 import capital.scalable.restdocs.jackson.JacksonResultHandlers;
 import capital.scalable.restdocs.response.ResponseModifyingPreprocessors;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -48,7 +49,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import org.springframework.test.web.servlet.MvcResult;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -124,11 +125,14 @@ public class ActividadUnicoCursoCtrlIT {
         String url = String.format(PATH, CODIGO_CURSO_EXISTENTE);
         this.mockMvc.perform(
                 get(url).accept(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
+        ).andExpect(status().isOk())
+        // More about jsonpath: https://github.com/jayway/JsonPath
+         .andExpect(MockMvcResultMatchers.jsonPath("[*].codigo_curso", 
+            containsInAnyOrder(CODIGO_CURSO_EXISTENTE,CODIGO_CURSO_EXISTENTE,CODIGO_CURSO_EXISTENTE)));
     }
 
     @Test
-    public void actividadCursoExistenteHTML() throws Exception {
+    public void getHtml() throws Exception {
         String url = String.format(PATH, CODIGO_CURSO_EXISTENTE);
         MvcResult result = this.mockMvc
          .perform(get(url).accept(MediaType.TEXT_HTML))
