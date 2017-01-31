@@ -30,7 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  *
  * Controlador para obtener la actividad de un curso concreto.
- * Cada método implemente uno o más internet types. Actualmente se soportan
+ * Cada metodo implemente uno o mas internet types. Actualmente se soportan
  * text/html, text/csv, appplication/json, application/xml, image/png, image/jpg.
  * 
  * ej: /cursos/actividad?desde=2000-10-31T01:30:00.000+02:00&hasta=2000-10-31T01:30:00.000+02:00
@@ -67,14 +67,14 @@ public class ActividadUnicoCursoCtrl {
     }
 
     /**
-     * Retorna las unidades didácticas de un determinado curso opcionalmente restringiendo
-     * la búsqueda a un periodo de tiempo. Puede utilizarse para evaluar la popularidad de
+     * Retorna las unidades didacticas de un determinado curso opcionalmente restringiendo
+     * la busqueda a un periodo de tiempo. Puede utilizarse para evaluar la popularidad de
      * cada una de las secciones del mismo.
      * 
      * @param codigo del curso, como por ejemplo <pre>cultura</pre>.
      * @param desde fecha opcional de inicio en formato yyyy-MM-dd.
      * @param hasta fecha opcional de final de rango (inclusive) en formato yyyy-MM-dd.
-     * @return la lista de actividades como un array json de objetos o un árbol xml.
+     * @return la lista de actividades como un array json de objetos o un arbol xml.
      */
     @GetMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<ActividadUnidadDidactica> actividadCurso(

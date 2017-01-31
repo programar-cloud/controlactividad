@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * Información sobre las interacciones que se han llevado a cabo
- * con una determinada unidad didáctica durante un periodo de tiempo.
+ * Informacion sobre las interacciones que se han llevado a cabo
+ * con una determinada unidad didactica durante un periodo de tiempo.
  * 
  * @author ciberado
  */
@@ -30,20 +30,20 @@ import lombok.NoArgsConstructor;
 @JsonRootName("actividades")
 public class ActividadUnidadDidactica {
     /**
-     * El código de curso es legible para humanos. Inmutable.
+     * El codigo de curso es legible para humanos. Inmutable.
      */
     @JsonProperty("codigo-curso")
     String codigoCurso;
     /**
-     * Facilita la ordenación de las unidades didácticas.
+     * Facilita la ordenacion de las unidades didacticas.
      */
     String numeroUnidadDidactica;
     /** Legible para humanos. Actualmente no soporta i18n.
      */
     String tituloUnidadDidactica;
     /**
-     * Basado en la información proporcionada por las pantallas que
-     * muestran la Unidad Didáctica.
+     * Basado en la informacion proporcionada por las pantallas que
+     * muestran la Unidad Didactica.
      */
     int lecturasCompletadas;
     /**
