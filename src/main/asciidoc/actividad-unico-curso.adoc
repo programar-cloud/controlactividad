@@ -29,11 +29,37 @@ include::{snippets}/actividad-unico-curso/get-json/request-fields.adoc[]
 |No se ha encontrado el curso cuyo código se especificó. Respuesta vacía.
 |===
 
-==== Response structure
+==== Response types
+
+|===
+|Tipo|Descripción
+
+|application/json
+|Array conteniendo objetos como los mostrado abajo
+
+|application/xml
+|Árbol conteniendo objetos. TODO: generar salida xml
+
+|application/html
+|Tabla HTML con un campo por columna y una fila por recurso. TODO: generar salida HTML.
+
+|image/png, image/jpg
+|Imagen representando un gráfico de barras como el mostrado abajo
+
+|text/csv
+|Fichero de texto separado por comas. TODO: implementar y documentar
+|===
+
+
+==== Response structure (application/json)
 
 include::{snippets}/actividad-unico-curso/get-json/response-fields.adoc[]
 
-==== Example request/response
+==== Example request/response (application/json)
 
 include::{snippets}/actividad-unico-curso/get-json/curl-request.adoc[]
 include::{snippets}/actividad-unico-curso/get-json/http-response.adoc[]
+
+==== Response example (image/png, image/jpg)
+
+image::https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Histogram_example.svg/250px-Histogram_example.svg.png[Popularidad cursos]

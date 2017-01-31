@@ -17,6 +17,10 @@ import capital.scalable.restdocs.AutoDocumentation;
 import capital.scalable.restdocs.jackson.JacksonResultHandlers;
 import capital.scalable.restdocs.response.ResponseModifyingPreprocessors;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +46,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import org.springframework.test.web.servlet.MvcResult;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -121,28 +127,20 @@ public class ActividadUnicoCursoCtrlIT {
         ).andExpect(status().isOk());
     }
 
-    /*
     @Test
-    public void actividadCursoExistenteHTML() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.TEXT_HTML));
-
-        HttpEntity<String> entity = new HttpEntity<>(headers);
+    public void actividadCursoExistenteHTML() throws Exception {
         String url = String.format(PATH, CODIGO_CURSO_EXISTENTE);
-        ResponseEntity<String> response
-                = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-
-        assertEquals("Invocación existosa", HttpStatus.OK,
-                response.getStatusCode());
-
-        String responseBody = response.getBody();
-
+        MvcResult result = this.mockMvc
+         .perform(get(url).accept(MediaType.TEXT_HTML))
+         .andExpect(status().isOk())
+         .andReturn();
+        
+        String responseBody = result.getResponse().getContentAsString();
         Document doc = Jsoup.parse(responseBody);
         Elements codigosCursoElem = doc.select("table tr td:first-child");
-
         Assert.assertTrue("Encontradas actividades.", codigosCursoElem.size() > 0);
         Assert.assertTrue("Actividad pertenciente al curso \"cultura\".",
-                codigosCursoElem.stream().allMatch(elem -> elem.text().equals("cultura")));
+        codigosCursoElem.stream().allMatch(elem -> elem.text().equals("cultura")));
+         
     }
-     */
 }

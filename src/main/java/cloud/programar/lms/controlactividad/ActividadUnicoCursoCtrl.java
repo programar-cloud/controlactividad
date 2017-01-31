@@ -13,14 +13,18 @@
  */
 package cloud.programar.lms.controlactividad;
 
+import java.io.InputStream;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 import javax.validation.constraints.Size;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -103,11 +107,17 @@ public class ActividadUnicoCursoCtrl {
     }
 
     @GetMapping(produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
-    public List<ActividadCurso> actividadCursoImage(
+    public ResponseEntity<InputStreamResource> actividadCursoImage(
             @PathVariable @Size(min = 4) String codigo,
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime hasta) {
-        throw new UnsupportedOperationException("TODO");
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime hasta,
+            @RequestHeader(value = "Accept") String contentType) {
+        String filename = "rex." + (contentType.contains("png") ? "png" : "jpg");
+        InputStream in = ControlActividadApplication.class.getClassLoader()
+                .getResourceAsStream(filename);
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .body(new InputStreamResource(in));
     }
 
     @GetMapping(produces = {"text/csv"})

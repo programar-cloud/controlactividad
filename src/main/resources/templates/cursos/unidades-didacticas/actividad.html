@@ -1,9 +1,9 @@
 <table border="1">
     <tr th:each="actividad : ${actividadUnidades}">
         <td th:text="${actividad.codigoCurso}"></td>
-        <td th:text="${actividad.numero}"></td>
-        <td th:text="${actividad.titulo}"></td>
-        <td th:text="${actividad.completados}"></td>
+        <td th:text="${actividad.numeroUnidadDidactica}"></td>
+        <td th:text="${actividad.tituloUnidadDidactica}"></td>
+        <td th:text="${actividad.lecturasCompletadas}"></td>
         <td th:text="${actividad.desde!=null} ?${#temporals.format(actividad.desde, 'dd/MM/yyyy')}"></td>
         <td th:text="${actividad.hasta!=null} ?${#temporals.format(actividad.hasta, 'dd/MM/yyyy')}"></td>        
     </tr>
