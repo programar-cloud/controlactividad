@@ -127,7 +127,7 @@ public class ActividadUnicoCursoCtrlIT {
                 get(url).accept(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk())
         // More about jsonpath: https://github.com/jayway/JsonPath
-         .andExpect(MockMvcResultMatchers.jsonPath("[*].codigo_curso", 
+         .andExpect(MockMvcResultMatchers.jsonPath("[*].codigoCurso", 
             containsInAnyOrder(CODIGO_CURSO_EXISTENTE,CODIGO_CURSO_EXISTENTE,CODIGO_CURSO_EXISTENTE)));
     }
 

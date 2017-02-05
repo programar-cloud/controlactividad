@@ -5,7 +5,7 @@
 
     <groupId>cloud.programar.lms</groupId>
     <artifactId>controlactividad</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>controlactividad</name>
@@ -203,28 +203,10 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.outputDirectory}/public</outputDirectory>
+                            <outputDirectory>${project.build.outputDirectory}/public/docs</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}/generated-docs</directory>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>copy-index-generated-docs</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.basedir}/generated-docs</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${project.build.directory}/generated-docs</directory>
-                                    <includes>
-                                        <include>index.html</include>
-                                    </includes>
                                 </resource>
                             </resources>
                         </configuration>
