@@ -53,7 +53,7 @@ public class ActividadUnicoCursoCtrl {
 
     /**
      * 
-     * Retorna las unidades didacticas de un determinado curso opcionalmente restringiendo
+     * Retorna la actividad de las unidades didacticas de un determinado curso opcionalmente restringiendo
      * la busqueda a un periodo de tiempo. Puede utilizarse para evaluar la popularidad de
      * cada una de las secciones del mismo.
      * 
@@ -82,7 +82,7 @@ public class ActividadUnicoCursoCtrl {
     }
 
     /**
-     * Retorna las unidades didacticas de un determinado curso opcionalmente restringiendo
+     * Retorna la actividad de las unidades didacticas de un determinado curso opcionalmente restringiendo
      * la busqueda a un periodo de tiempo. Puede utilizarse para evaluar la popularidad de
      * cada una de las secciones del mismo.
      * 
