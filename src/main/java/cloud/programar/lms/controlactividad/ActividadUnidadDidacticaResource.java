@@ -10,31 +10,38 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-package cloud.programar.lms.controlactividad;
-
-import java.time.ZonedDateTime;
+ */package cloud.programar.lms.controlactividad;
+ 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.ResourceSupport;
 import org.springframework.hateoas.core.Relation;
+
 
 /**
  *
- * Incluye información con el resúmen de las actividades que se han llevado
- * a cabo en un determinado curso. En esta versión del código se añaden
- * como embedded las actividades desagregadas de cada uno de las unidades
- * didácticas para mostrar cómo funciona HAL.
- * 
  * @author ciberado
  */
 @Data @AllArgsConstructor @NoArgsConstructor
-@Relation(value="actividad_curso", collectionRelation = "actividad_cursos")
-public class ActividadCurso {
-    String codigo;
-    String titulo;
-    int unidadesDidacticasCompletadas;
+@Relation(value="actividad_unidad_didactica", collectionRelation="actividades_unidades_didacticas")
+public class ActividadUnidadDidacticaResource extends ResourceSupport  {
     
-    ZonedDateTime desde;
-    ZonedDateTime hasta;
+    /**
+     * El codigo de curso es legible para humanos. Inmutable.
+     */
+    String codigoCurso;
+    /**
+     * Facilita la ordenacion de las unidades didacticas.
+     */
+    String numeroUnidadDidactica;
+    /** Legible para humanos. Actualmente no soporta i18n.
+     */
+    String tituloUnidadDidactica;
+    /**
+     * Basado en la informacion proporcionada por las pantallas que
+     * muestran la Unidad Didactica.
+     */
+    int lecturasCompletadas;
+    
 }

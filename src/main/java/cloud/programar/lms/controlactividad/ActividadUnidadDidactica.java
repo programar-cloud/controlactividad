@@ -10,14 +10,15 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */package cloud.programar.lms.controlactividad;
+ */
+package cloud.programar.lms.controlactividad;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.core.Relation;
 
 /**
  *
@@ -28,6 +29,8 @@ import lombok.NoArgsConstructor;
  */
 @Data @AllArgsConstructor @NoArgsConstructor
 @JsonRootName("actividades")
+@Relation(value="actividad_unidad_didactica", 
+          collectionRelation = "actividades_unidades_didacticas")
 public class ActividadUnidadDidactica {
     /**
      * El codigo de curso es legible para humanos. Inmutable.
@@ -45,13 +48,6 @@ public class ActividadUnidadDidactica {
      * muestran la Unidad Didactica.
      */
     int lecturasCompletadas;
-    /**
-     * Inicio del rango de fechas que se toma en cuenta a la hora de
-     * contabilizar los datos proporcionados.
-     */
-    ZonedDateTime desde;
-    /** Final de las fechas que se tomaron en cuenta a la hora de contabilizar
-     * los datos proporcionados (inclusive).
-     */
-    ZonedDateTime hasta;
+
+    
 }
