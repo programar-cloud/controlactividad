@@ -59,6 +59,11 @@ public class Resource<T> {
         return this;
     }
     
+    public Resource<T> addAdditionalPropertyIfNotNull(String name, Object value) {
+        if (value != null) addAdditionalProperty(name, value);
+        return this;
+    }
+    
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return additionalProperties;

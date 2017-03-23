@@ -14,7 +14,6 @@
 package cloud.programar.lms.controlactividad;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
-import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,24 +26,22 @@ import lombok.NoArgsConstructor;
  * @author ciberado
  */
 @Data @AllArgsConstructor @NoArgsConstructor
-@JsonRootName("actividades")
-public class ActividadUnidadDidactica {
-    /**
-     * El codigo de curso es legible para humanos. Inmutable.
-     */
-    String codigoCurso;
-    /**
-     * Facilita la ordenacion de las unidades didacticas.
-     */
-    String numeroUnidadDidactica;
+public class UnidadDidactica {
+    String numero;
     /** Legible para humanos. Actualmente no soporta i18n.
      */
-    String tituloUnidadDidactica;
+    String titulo;
     /**
      * Basado en la informacion proporcionada por las pantallas que
      * muestran la Unidad Didactica.
      */
     int lecturasCompletadas;
 
-    
+    /** 
+     * Esta propiedadad simula los atributos que no quieres incluír en la
+     * respuesta cuando el objeto es serializado como un embedded de un
+     * recurso. Solo aparecerá si explícitamente recuperas esta unidad 
+     * didáctica.
+     */
+    String unaLarguisimaPropiedadQueNoQuieresIncrustarComoEmbedded;
 }

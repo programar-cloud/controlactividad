@@ -13,6 +13,9 @@
  */
 package cloud.programar.lms.controlactividad;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,9 +27,18 @@ import lombok.NoArgsConstructor;
  * 
  * @author ciberado
  */
-@Data @AllArgsConstructor @NoArgsConstructor
-public class ActividadCurso {
+@Data 
+// suppressConstructorProperties is mandatory because AllArgsConstructor interacts with JsonIgnore
+@AllArgsConstructor(suppressConstructorProperties = true) 
+@NoArgsConstructor
+public class Curso {
     String codigo;
     String titulo;
     int unidadesDidacticasCompletadas;
+    /* Las unidades didácticas son recursos con URLs independientes a las de un
+       curso y por lo tanto no deseamos incrustarlas directamente en la representación
+       de un curso: en su lugar las convertiremos en resources.
+    */
+    @JsonIgnore
+    List<UnidadDidactica> unidadesDidacticas = new ArrayList<>();
 }
