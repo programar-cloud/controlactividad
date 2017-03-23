@@ -44,89 +44,38 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/cursos/{codigo}/unidades-didacticas/actividad")
 public class ActividadUnicoCursoCtrl {
-//    private final String CODIGO_CURSO_EXISTENTE = "cultura";
-//    
-//    private final ActividadUnidadDidactica[] actividadUnidades = {
-//            new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1000", "El nacimiento de los web services", 1080, null, null),
-//            new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1010", "Desde monolíticas a microservicios", 1000, null, null),
-//            new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1020", "Devops, no, en serio: devops", 500, null, null)};
-//
-//    /**
-//     * 
-//     * Retorna la actividad de las unidades didacticas de un determinado curso opcionalmente restringiendo
-//     * la busqueda a un periodo de tiempo. Puede utilizarse para evaluar la popularidad de
-//     * cada una de las secciones del mismo.
-//     * 
-//     * @param codigo del curso, como por ejemplo *cultura*.
-//     * @param desde fecha opcional de inicio en formato yyyy-MM-dd.
-//     * @param hasta fecha opcional de final de rango (inclusive) en formato yyyy-MM-dd.
-//     * @return la lista de actividades como una tabla HTML.
-//     */
-//    @GetMapping(produces = {MediaType.TEXT_HTML_VALUE})
-//    public ModelAndView actividadCursoHTML(
-//            @PathVariable @Size(min = 4) String codigo,
-//            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) ZonedDateTime desde,
-//            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) ZonedDateTime hasta) {
-//        if (codigo.equals(CODIGO_CURSO_EXISTENTE) == false) {
-//            throw new ResourceNotFoundException(String.format("El curso %s no existe.", codigo));
-//        }
-//        ModelAndView mav = new ModelAndView("cursos/unidades-didacticas/actividad");
-//        if (actividadUnidades[0].getCodigoCurso().equals(codigo) == true) {
-//            for (ActividadUnidadDidactica actividad : actividadUnidades) {
-//                actividad.setDesde(desde);
-//                actividad.setHasta(hasta);
-//            }
-//            mav.addObject("actividadUnidades", Arrays.asList(actividadUnidades));
-//        }
-//        return mav;
-//    }
-//
-//    /**
-//     * Retorna la actividad de las unidades didacticas de un determinado curso opcionalmente restringiendo
-//     * la busqueda a un periodo de tiempo. Puede utilizarse para evaluar la popularidad de
-//     * cada una de las secciones del mismo.
-//     * 
-//     * @param codigo del curso, como por ejemplo *cultura*.
-//     * @param desde fecha opcional de inicio en formato yyyy-MM-dd.
-//     * @param hasta fecha opcional de final de rango (inclusive) en formato yyyy-MM-dd.
-//     * @return la lista de actividades como un array json de objetos o un arbol xml.
-//     */
-//    @GetMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
-//    public List<ActividadUnidadDidactica> actividadCurso(
-//            @PathVariable @Size(min = 4) String codigo,
-//            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
-//            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime hasta) {
-//        if (codigo.equals(CODIGO_CURSO_EXISTENTE) == false) {
-//            throw new ResourceNotFoundException(String.format("El curso %s no existe.", codigo));
-//        }
-//        for (ActividadUnidadDidactica actividad : actividadUnidades) {
-//            actividad.setDesde(desde);
-//            actividad.setHasta(hasta);
-//        }
-//        return Arrays.asList(actividadUnidades);
-//    }
-//
-//    @GetMapping(produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE})
-//    public ResponseEntity<InputStreamResource> actividadCursoImage(
-//            @PathVariable @Size(min = 4) String codigo,
-//            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
-//            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime hasta,
-//            @RequestHeader(value = "Accept") String contentType) {
-//        String filename = "rex." + (contentType.contains("png") ? "png" : "jpg");
-//        InputStream in = ControlActividadApplication.class.getClassLoader()
-//                .getResourceAsStream(filename);
-//        return ResponseEntity.ok()
-//                .contentType(MediaType.parseMediaType(contentType))
-//                .body(new InputStreamResource(in));
-//    }
-//
-//    @GetMapping(produces = {"text/csv"})
-//    public List<ActividadCurso> actividadCursoCSV(
-//            @PathVariable @Size(min = 4) String codigo,
-//            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
-//            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime hasta) {
-//        throw new UnsupportedOperationException("TODO");
-//    }
-//
+    private final String CODIGO_CURSO_EXISTENTE = "cultura";
+    
+    private final ActividadUnidadDidactica[] actividadUnidades = {
+            new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1000", "El nacimiento de los web services", 1080),
+            new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1010", "Desde monolíticas a microservicios", 1000),
+            new ActividadUnidadDidactica(CODIGO_CURSO_EXISTENTE, "1020", "Devops, no, en serio: devops", 500)};    
+
+    /**
+     * Retorna la actividad de las unidades didacticas de un determinado curso opcionalmente restringiendo
+     * la busqueda a un periodo de tiempo. Puede utilizarse para evaluar la popularidad de
+     * cada una de las secciones del mismo.
+     * 
+     * @param codigo del curso, como por ejemplo *cultura*.
+     * @param desde fecha opcional de inicio en formato yyyy-MM-dd.
+     * @param hasta fecha opcional de final de rango (inclusive) en formato yyyy-MM-dd.
+     * @return la lista de actividades como un array json de objetos o un arbol xml.
+     */
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public List<ActividadUnidadDidactica> actividadCurso(
+            @PathVariable @Size(min = 4) String codigo,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime desde,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") ZonedDateTime hasta) {
+        if (codigo.equals(CODIGO_CURSO_EXISTENTE) == false) {
+            throw new ResourceNotFoundException(String.format("El curso %s no existe.", codigo));
+        }
+        for (ActividadUnidadDidactica actividad : actividadUnidades) {
+            actividad.setDesde(desde);
+            actividad.setHasta(hasta);
+        }
+        return Arrays.asList(actividadUnidades);
+    }
+
+
 
 }

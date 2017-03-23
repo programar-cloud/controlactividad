@@ -41,6 +41,7 @@ public class ResourceTest {
 
         
         Resource<Pojo> resource = new Resource<>(new Pojo(), ROOT_PATH)
+                .addAdditionalProperty("c", "gamma")
                 .addCurie("pc", "http://docs.api.demo/v1/{rel}")
                 .addLink("_self", "/a")
                 .addLink("_next", "/b")
@@ -54,6 +55,8 @@ public class ResourceTest {
         Assert.assertEquals("a is alpha", "alpha", a);
         int b = JsonPath.read(json, "b");
         Assert.assertEquals("b is 1", 1, b);
+        String c = JsonPath.read(json, "c");
+        Assert.assertEquals("c is gamma", "gamma", c);
         String _self = JsonPath.read(json, "_links._self.href");
         Assert.assertEquals("_self is ok", "http://api.demo/v1/resources/a", _self);
         String embeddedA = JsonPath.read(json, "_embedded.pojos[0].a");
