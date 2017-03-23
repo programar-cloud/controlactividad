@@ -47,6 +47,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/cursos/actividad")
 public class ActividadTodosLosCursosCtrl {
+    /*
     private final ActividadCurso[] actividadCursos = {
             new ActividadCurso("cultura", "Cultura DevOps", 2580, null, null),
             new ActividadCurso("apirest", "Diseño de APIs", 2200, null, null),
@@ -115,4 +116,5 @@ public class ActividadTodosLosCursosCtrl {
 
         return data;
     }
+*/
 }

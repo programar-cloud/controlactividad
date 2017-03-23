@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cloud.programar.lms.controlactividad;
+package cloud.programar.hateoas;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,14 +19,14 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * Incluye información con el resúmen de las actividades que se han llevado
- * a cabo en un determinado curso. 
- * 
  * @author ciberado
  */
-@Data @AllArgsConstructor @NoArgsConstructor
-public class ActividadCurso {
-    String codigo;
-    String titulo;
-    int unidadesDidacticasCompletadas;
+@NoArgsConstructor @AllArgsConstructor @Data
+public class Link {
+    private String name;
+    private String href;
+    private String type;
+    private String title;
+    private Boolean templated;
+    
 }

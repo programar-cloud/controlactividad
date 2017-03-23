@@ -18,7 +18,6 @@ import java.time.ZonedDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.hateoas.core.Relation;
 
 /**
  *
@@ -29,8 +28,6 @@ import org.springframework.hateoas.core.Relation;
  */
 @Data @AllArgsConstructor @NoArgsConstructor
 @JsonRootName("actividades")
-@Relation(value="actividad_unidad_didactica", 
-          collectionRelation = "actividades_unidades_didacticas")
 public class ActividadUnidadDidactica {
     /**
      * El codigo de curso es legible para humanos. Inmutable.
