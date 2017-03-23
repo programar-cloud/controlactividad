@@ -13,6 +13,8 @@
  */
 package cloud.programar.hateoas;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
@@ -20,7 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,12 +29,13 @@ import lombok.NoArgsConstructor;
  *
  * @author ciberado
  */
-@NoArgsConstructor @AllArgsConstructor @Data
+@NoArgsConstructor @Data
 public class Resource<T> {
     @JsonIgnore(true)
     private String rootPath;
     @JsonUnwrapped
     private T content;
+    private Map<String, Object> additionalProperties = new HashMap<>();
     /* Links can be both single objects (Link instances) or arrays
        of links... so we support them all using <i>Object</i>.
     */
@@ -48,6 +50,18 @@ public class Resource<T> {
     public Resource(T content, String rootPath) {
         this.rootPath = rootPath;
         this.content = content;
+    }
+    
+    //http://stackoverflow.com/questions/18043587/why-im-not-able-to-unwrap-and-serialize-a-java-map-using-the-jackson-java-libra
+    @JsonAnySetter
+    public Resource<T> addAdditionalProperty(String name, Object value) {
+        additionalProperties.put(name, value);
+        return this;
+    }
+    
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return additionalProperties;
     }
     
     public Resource<T> addLink(String id, String href) {
