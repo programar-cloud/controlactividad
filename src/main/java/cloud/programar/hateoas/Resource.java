@@ -70,11 +70,13 @@ public class Resource<T> {
     }
     
     public Resource<T> addLink(String id, String href) {
-        links.put(id, new Link(null, rootPath+href, null, null, null));
+        this.addLink(id, href, null);
         return this;
     }
     
     public Resource<T> addLink (String id, String href, String type) {
+        type = type != null ? 
+               type : "application/vnd." + content.getClass().getSimpleName().toLowerCase();
         links.put(id, new Link(null, rootPath + href, type, null, null));
         return this;
     }
