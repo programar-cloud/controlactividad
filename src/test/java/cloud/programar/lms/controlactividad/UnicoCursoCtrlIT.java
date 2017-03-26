@@ -17,7 +17,6 @@ import capital.scalable.restdocs.AutoDocumentation;
 import capital.scalable.restdocs.jackson.JacksonResultHandlers;
 import capital.scalable.restdocs.response.ResponseModifyingPreprocessors;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import static org.hamcrest.Matchers.containsInAnyOrder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -46,15 +45,16 @@ import org.springframework.web.context.WebApplicationContext;
 
 import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import org.springframework.test.web.servlet.MvcResult;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
-public class ActividadUnicoCursoCtrlIT {
+public class UnicoCursoCtrlIT {
 
     private static final String CODIGO_CURSO_EXISTENTE = "cultura";
     private static final String CODIGO_CURSO_INEXISTENTE = "deathcabforcutie";

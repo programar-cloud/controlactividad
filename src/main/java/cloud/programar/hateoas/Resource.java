@@ -69,14 +69,18 @@ public class Resource<T> {
         return additionalProperties;
     }
     
+    /** Creates and adds a new Link if href is not null. */
     public Resource<T> addLink(String id, String href) {
+        if (href == null) return this;
         this.addLink(id, href, null);
         return this;
     }
     
+    /** Creates and adds a new Link if href is not null. */
     public Resource<T> addLink (String id, String href, String type) {
+        if (href == null) return this;
         type = type != null ? 
-               type : "application/vnd." + content.getClass().getSimpleName().toLowerCase();
+               type : "application/vnd." + content.getClass().getName();
         links.put(id, new Link(null, rootPath + href, type, null, null));
         return this;
     }
