@@ -69,6 +69,7 @@ public class Resource<T> {
         return additionalProperties;
     }
     
+    
     /** Creates and adds a new Link if href is not null. */
     public Resource<T> addLink(String id, String href) {
         if (href == null) return this;
@@ -81,7 +82,18 @@ public class Resource<T> {
         if (href == null) return this;
         type = type != null ? 
                type : "application/vnd." + content.getClass().getName();
-        links.put(id, new Link(null, rootPath + href, type, null, null));
+        Link link = new Link(null, rootPath + href, type, null, null);
+        this.addLink(id, link);
+        return this;
+    }
+    
+    public Resource<T> addLink(String id, Link link) {
+        // Asegura que el link tiene la ruta absoluta sin modificar el parámetro
+        if (link.getHref().startsWith(rootPath) == false) {
+            link = new Link(link.getName(), rootPath + link.getHref(), link.getType(),
+                    link.getTitle(), link.getTemplated());
+        }
+        links.put(id, link);
         return this;
     }
     
